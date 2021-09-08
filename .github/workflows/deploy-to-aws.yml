@@ -34,7 +34,7 @@ jobs:
           npm build install
           
       - name: S3 Sync
-        uses: prabandha/s3-sync-action@v0.5.1
+        uses: jakejarvis/s3-sync-action@v0.5.1
         with:
          args: --acl public-read --delete
         env:
@@ -45,9 +45,9 @@ jobs:
           SOURCE-DIR: 'dist'
           
       - name: Invalidate CloudFront
-        uses: prabandha/invalidate-cloudfront-action@v1.3
+        uses: chetan/invalidate-cloudfront-action@v1.3
         env:
-          DISTRIBUTION: ${{ secrets.DISTRIBUTIO }}
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
           PATHS: '/*'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
